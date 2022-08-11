@@ -1,0 +1,6 @@
+module  starting( input 		  blank, pixel_clk,
+                  output [3:0]  Red, Green, Blue, 
+						output 		  start);
+						
+						
+endmodule 

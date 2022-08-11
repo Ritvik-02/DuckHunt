@@ -1,0 +1,57 @@
+module duck_CP (	input [2:0] color_idx,
+								output [3:0] VGA_R, VGA_G, VGA_B);
+								
+
+always_comb begin
+	
+	case(color_idx)
+	
+		3'b000: begin
+				VGA_R = 1'hF;
+				VGA_G = 1'h0;
+				VGA_B = 1'h0;
+		end
+		
+		3'b001: begin
+				VGA_R = 1'hF;
+				VGA_G = 1'hF;
+				VGA_B = 1'hF;
+		end
+
+		3'b010: begin
+				VGA_R = 1'hF;
+				VGA_G = 1'h7;
+				VGA_B = 1'h6;
+		end
+
+		3'b011: begin
+				VGA_R = 1'h0;
+				VGA_G = 1'hF;
+				VGA_B = 1'hB;
+		end
+		
+		3'b100: begin
+				VGA_R = 1'h0;
+				VGA_G = 1'h0;
+				VGA_B = 1'hA;
+		end
+		
+		3'b101: begin
+				VGA_R = 1'hB;
+				VGA_G = 1'h0;
+				VGA_B = 1'hB;
+		end
+		
+		default: begin
+				VGA_R = 2'hD6;
+				VGA_G = 2'h00;
+				VGA_B = 2'h00;
+		end
+	endcase
+	
+end
+
+endmodule
+
+
+		

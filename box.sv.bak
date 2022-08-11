@@ -1,0 +1,53 @@
+module box( input Reset, frame_clk,
+             output [9:0]  BoxX, BoxY, BoxS );
+					
+	 parameter [9:0] Box_X_Center=320;  // Center position on the X axis
+    parameter [9:0] Box_Y_Center=240;  // Center position on the Y axis
+    parameter [9:0] Box_X_Min=10;       // Leftmost point on the X axis
+    parameter [9:0] Box_X_Max=629;     // Rightmost point on the X axis
+    parameter [9:0] Box_Y_Min=10;       // Topmost point on the Y axis
+    parameter [9:0] Box_Y_Max=399;     // Bottommost point on the Y axis
+    parameter [9:0] Box_X_Step=1;      // Step size on the X axis
+    parameter [9:0] Box_Y_Step=1;      // Step size on the Y axis
+    
+    logic [9:0] Box_Size;
+	 logic [9:0] X, Y;
+
+    //assign Box_Size = 15;
+	 
+	 always_ff @ (posedge frame_clk ) begin
+	 X <= mouseX;
+	 Y <= mouseY;
+    BoxS <= Box_Size;
+	 
+	 if(mouseButton == 1)begin
+			Box_Size = 20;
+	 end
+	 else begin
+			Box_Size = 15;
+	  end
+	 
+	 if ( Y <= Box_Y_Min ) begin  // Box is at the bottom edge, BOUNCE!
+		  BoxY <= Box_Y_Min;  // 2's complement.
+		  BoxX <= X;
+	 end
+	 else if ( Y >= Box_Y_Max ) begin  // Box is at the top edge, BOUNCE!
+		  BoxY <= Box_Y_Max;
+		  BoxX <= X;
+		end  
+	  else if ( X >= Box_X_Max ) begin  // Box is at the Right edge, BOUNCE!
+		  BoxX <= Box_X_Max;  // 2's complement.
+		  BoxY <= Y;
+		end  
+	 else if ( X <= Box_X_Min ) begin  // Box is at the Left edge, BOUNCE!
+		  BoxX <= Box_X_Min;
+		  BoxY <= Y;
+		end  
+	 else begin
+		  BoxX <= X;  // Box is somewhere in the middle, don't bounce, just keep moving
+		  BoxY <= Y;
+	 end
+	 end
+    
+
+endmodule

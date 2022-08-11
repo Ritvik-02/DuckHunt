@@ -1,0 +1,62 @@
+module background_CP (	input [4:0] color_idx,
+								output [7:0] VGA_R, VGA_G, VGA_B);
+								
+
+always_comb begin
+	
+	case(color_idx)
+	
+		5'b00000: begin
+				VGA_R = 2'hFF;
+				VGA_G = 2'h00;
+				VGA_B = 2'h00;
+		end
+		
+		5'b00001: begin
+				VGA_R = 2'h00;
+				VGA_G = 2'h00;
+				VGA_B = 2'h00;
+		end
+
+		5'b00010: begin
+				VGA_R = 2'h00;
+				VGA_G = 2'h0F;
+				VGA_B = 2'hFF;
+		end
+
+		5'b00011: begin
+				VGA_R = 2'h52;
+				VGA_G = 2'h21;
+				VGA_B = 2'h00;
+		end
+		
+		5'b00100: begin
+				VGA_R = 2'h6B;
+				VGA_G = 2'h6B;
+				VGA_B = 2'h00;
+		end
+		
+		5'b00101: begin
+				VGA_R = 2'h8C;
+				VGA_G = 2'hD6;
+				VGA_B = 2'h00;
+		end
+
+		5'b00110: begin
+				VGA_R = 2'h00;
+				VGA_G = 2'h52;
+				VGA_B = 2'h00;
+		end
+		
+		5'b00111: begin
+				VGA_R = 2'h63;
+				VGA_G = 2'hAD;
+				VGA_B = 2'hFF;
+		end
+		
+		default: begin
+				VGA_R = 2'hD6;
+				VGA_G = 2'h00;
+				VGA_B = 2'h00;
+		end
+		
